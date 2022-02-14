@@ -1,0 +1,14 @@
+server.port: 8888
+spring:
+  profiles:
+    active: git
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/SerjNikitin/config-repository.git
+          clone-on-start: true
+          username:
+          password:
+          search-paths: "{application}/"
+      enabled: false
