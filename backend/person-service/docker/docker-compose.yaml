@@ -1,0 +1,20 @@
+version: '3.2'
+
+volumes:
+  postgres-person:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:12.8
+    container_name: postgres-person
+    volumes:
+      - type: volume
+        source: postgres-person
+        target: /var/lib/postgresql/dataConfig
+    environment:
+      POSTGRES_DB: person
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgresql
+    ports:
+      - "5435:5432"
