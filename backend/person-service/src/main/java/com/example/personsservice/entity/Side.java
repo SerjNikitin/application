@@ -22,7 +22,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "side")
+@Table(name = "side", schema = "person")
 public class Side {
 
 	@Id

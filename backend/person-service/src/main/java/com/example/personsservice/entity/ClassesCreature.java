@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode.Exclude;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,7 +25,7 @@ import java.util.List;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "classes_creature")
+@Table(name = "classes_creature", schema = "person")
 public class ClassesCreature {
 
 	@Id
@@ -40,11 +41,11 @@ public class ClassesCreature {
 	private String description;
 
 	@Exclude
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "side_id")
 	private Side side;
 
 	@Exclude
-	@OneToMany(mappedBy = "classesCreature")
+	@OneToMany(mappedBy = "classesCreature", fetch = FetchType.LAZY)
 	private List<FamilyType> familyTypes;
 }

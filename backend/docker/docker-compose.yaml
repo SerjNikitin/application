@@ -18,3 +18,12 @@ services:
       POSTGRES_PASSWORD: postgresql
     ports:
       - "5435:5432"
+
+  config-service:
+    container_name: config-service
+    image: bellsoft/liberica-openjdk-debian
+#    jtim/docker-docker-compose-jdk:20.10.5-compose-1.28.6-adoptopenjdk-11.0.10_9аа
+    command:
+      - mvn clean
+      - mvn package
+

@@ -1,3 +1,6 @@
+create schema person;
+
+
 -- создание сторон(свет,тьма)
 create table person.side
 (
@@ -70,3 +73,7 @@ create unique index family_type_id_uindex
 alter table person.family_type
     add constraint family_type_classes_creature_id_fk
         foreign key (classes_creature_id) references person.classes_creature;
+
+
+INSERT INTO person.side (name_side, description) VALUES ('Тьма', 'lalala');
+INSERT INTO person.side (name_side, description) VALUES ('Свет', 'lalala');

@@ -9,6 +9,7 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,7 +23,7 @@ import javax.persistence.Table;
 @EqualsAndHashCode
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "family_type")
+@Table(name = "family_type", schema = "person")
 public class FamilyType {
 
 	@Id
@@ -38,7 +39,7 @@ public class FamilyType {
 	private String description;
 
 	@Exclude
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "classes_creature_id")
 	private ClassesCreature classesCreature;
 }

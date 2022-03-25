@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,11 +39,11 @@ public class ClassesCreatureController {
 	@GetMapping("/get-all")
 	public ResponseEntity<?> getClassesCreatures() {
 		List<ClassesCreature> classesCreatures = classesCreatureService.findAll();
-		return ResponseEntity.status(HttpStatus.OK).body(personMapper.toListClassesCreatureDto(classesCreatures));
+		return ResponseEntity.status(HttpStatus.OK).body(personMapper.toListClassesCreatureDtos(classesCreatures));
 	}
 
 	@PostMapping("/create")
-	public ResponseEntity<?> createClassesCreature(@RequestBody ClassesCreatureDto classesCreatureDto) {
+	public ResponseEntity<?> createClassesCreature(@RequestBody @Valid ClassesCreatureDto classesCreatureDto) {
 		try {
 			ClassesCreature classesCreature = classesCreatureService.saveClassesCreature(personMapper.toClassesCreature(classesCreatureDto));
 			return ResponseEntity.status(HttpStatus.OK).body(personMapper.toClassesCreatureDto(classesCreature));
@@ -53,7 +54,7 @@ public class ClassesCreatureController {
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> updateClassesCreature(@PathVariable Long id, @RequestBody ClassesCreatureDto classesCreatureDto) {
+	public ResponseEntity<?> updateClassesCreature(@PathVariable Long id, @RequestBody @Valid ClassesCreatureDto classesCreatureDto) {
 		Optional<ClassesCreature> optionalClassesCreature = classesCreatureService.findById(id);
 		if (optionalClassesCreature.isPresent()) {
 			ClassesCreature classesCreature = classesCreatureService.saveClassesCreature(personMapper.toClassesCreature(classesCreatureDto));
